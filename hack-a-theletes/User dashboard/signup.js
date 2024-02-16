@@ -16,55 +16,61 @@ var firebaseConfig = {
   const database = firebase.database()
   
   // Set up our register function
-  function register () {
+  function register() {
     // Get all our input fields
-    email = document.getElementById('email').value
-    password = document.getElementById('password').value
-    full_name = document.getElementById('full_name').value
-  
+    var email = document.getElementById('email').value;
+    var password = document.getElementById('password').value;
+    var full_name = document.getElementById('full_name').value;
+
     // Validate input fields
     if (validate_email(email) == false || validate_password(password) == false) {
-      alert('Email or Password is Outta Line!!')
-      return
-      // Don't continue running the code
+        alert('Email or Password is Outta Line!!');
+        return;
     }
-    if (validate_field(full_name) == false) {           // || validate_field(milk_before_cereal) == false
-      alert('One or More Extra Fields is Outta Line!!')
-      return
+
+    if (validate_field(full_name) == false) {
+        alert('One or More Extra Fields is Outta Line!!');
+        return;
     }
-   
+
     // Move on with Auth
     auth.createUserWithEmailAndPassword(email, password)
-    .then(function() {
-      // Declare user variable
-      var user = auth.currentUser
-  
-      // Add this user to Firebase Database
-      var database_ref = database.ref()
-  
-      // Create User data
-      var user_data = {
-        email : email,
-        full_name : full_name,
-      }
-  
-      // Push to Firebase Database
-      database_ref.child('users/' + user.uid).set(user_data)
-  
-      // DOne
-      alert('User Created!!')
-      window.location.href = "index.html";
-    })
-    
-    .catch(function(error) {
-      // Firebase will use this to alert of its errors
-      var error_code = error.code
-      var error_message = error.message
-  
-      alert(error_message)
-    })
+        .then(function (credential) {
+            // Declare user variable
+            var user = auth.currentUser;
 
-  }
+            // Add this user to Firestore
+            var db = firebase.firestore();
+            var userRef = db.collection('users').doc(user.uid);
+
+            // Create User data
+            var user_data = {
+                email: email,
+                full_name: full_name,
+                user_id: user,
+            };
+
+            // Set data to Firestore
+            userRef.set(user_data)
+                .then(function () {
+                    // Done
+                    alert('User Created!!');
+                    window.location.href = "index.html";
+                })
+                .catch(function (error) {
+                    // Handle errors while setting data to Firestore
+                    alert("Error writing document: " + error);
+                });
+        })
+        .catch(function (error) {
+            // Firebase will use this to alert of its errors
+            var error_code = error.code;
+            var error_message = error.message;
+
+            alert(error_message);
+        });
+}
+
   
   // Set up our login function
   function login () {

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Patient Information Form</title>
+<link rel="stylesheet" href="temp.css">
+</head>
+<body>
+<h2>Patient Information Form</h2>
+<form id="patientForm">
+  <label for="fullName">Full Name:</label><br>
+  <input type="text" id="fullName" name="fullName" required><br><br>
+
+  <label for="dob">Date of Birth:</label><br>
+  <input type="date" id="dob" name="dob" required><br><br>
+
+  <label for="gender">Gender:</label><br>
+  <select id="gender" name="gender" required>
+    <option value="male">Male</option>
+    <option value="female">Female</option>
+    <option value="other">Other</option>
+  </select><br><br>
+
+  <label for="contactInfo">Contact Info (Phone Number):</label><br>
+  <input type="tel" id="contactInfo" name="contactInfo" required><br><br>
+
+  <label for="medicalConditions">Existing Medical Conditions:</label><br>
+  <textarea id="medicalConditions" name="medicalConditions" rows="4" cols="50"></textarea><br><br>
+
+  <label for="immunizationHistory">Immunization History:</label><br>
+  <textarea id="immunizationHistory" name="immunizationHistory" rows="4" cols="50"></textarea><br><br>
+
+  <label for="symptoms">Symptoms:</label><br>
+  <textarea id="symptoms" name="symptoms" rows="4" cols="50"></textarea><br><br>
+
+  <label for="durationSeverity">Duration and Severity:</label><br>
+  <textarea id="durationSeverity" name="durationSeverity" rows="4" cols="50"></textarea><br><br>
+
+  <label for="exerciseRoutine">Exercise Routine:</label><br>
+  <textarea id="exerciseRoutine" name="exerciseRoutine" rows="4" cols="50"></textarea><br><br>
+
+  <label for="sleepPatterns">Sleep Patterns:</label><br>
+  <textarea id="sleepPatterns" name="sleepPatterns" rows="4" cols="50"></textarea><br><br>
+
+  <label for="mentalHealthHistory">Mental Health History:</label><br>
+  <textarea id="mentalHealthHistory" name="mentalHealthHistory" rows="4" cols="50"></textarea><br><br>
+
+  <input onclick="uploadData()" type="submit" value="Submit">
+</form>
+
+<script>
+  document.getElementById("patientForm").addEventListener("submit", function(event) {
+    event.preventDefault(); // Prevent form submission
+    
+    // Collect form data
+    var formData = {
+      fullName: document.getElementById("fullName").value,
+      dob: document.getElementById("dob").value,
+      gender: document.getElementById("gender").value,
+      contactInfo: document.getElementById("contactInfo").value,
+      medicalConditions: document.getElementById("medicalConditions").value,
+      immunizationHistory: document.getElementById("immunizationHistory").value,
+      symptoms: document.getElementById("symptoms").value,
+      durationSeverity: document.getElementById("durationSeverity").value,
+      exerciseRoutine: document.getElementById("exerciseRoutine").value,
+      sleepPatterns: document.getElementById("sleepPatterns").value,
+      mentalHealthHistory: document.getElementById("mentalHealthHistory").value
+    };
+    
+    // Display collected data (for demonstration purposes)
+    console.log("Form Data:", formData);
+    
+    // Here you can send the form data to your server or perform further processing
+    
+    // Reset form after submission
+    this.reset();
+  });
+</script>
+</body>
+
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
+
+
+<!-- Our script must be loaded after firebase references -->
+<script src="temp.js"></script>
+
+</html>

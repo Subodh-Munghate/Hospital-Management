@@ -9,7 +9,7 @@
 .bg-div{
     height: 600px;
     width: 100vw;
-    background-image: url(/logo-images/bg-image.png);
+    background-image: url(./logo-images/bg-image.png);
     background-size: cover;
     display: flex;
 }
