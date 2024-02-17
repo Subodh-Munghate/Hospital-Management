@@ -1,3 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fetch Firestore Data</title>
+</head>
+<body>
+
+<h1>Fetch Firestore Data</h1>
+<button id="getDataBtn">Get Data</button>
+<div id="userData"></div>
+
+<!-- Firebase Firestore -->
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
+
+<script>
 // Your web app's Firebase configuration
 var firebaseConfig = {
     apiKey: "AIzaSyBKdLkLtCkX5bRIZVPp0zkTQrsEC-DGVtU",
@@ -21,20 +39,12 @@ function fetchUserData() {
     // Reference to the user's document
     const userRef = db.collection("users").doc("NDKCPUlh03OoNxkTrI7eGG60dYP2");
 
-    // Initialize variables to store user data
-    let fullName, dob, contactInfo, gender;
-
     // Fetch user data from Firestore
     userRef.get().then((doc) => {
         if (doc.exists) {
             // Document exists, extract data
             const userData = doc.data();
             
-            fullName = userData.fullName;
-            dob = userData.dob;
-            contactInfo = userData.contactInfo;
-            gender = userData.gender;
-
             // Display user data on the webpage
             const userDataDiv = document.getElementById("userData");
             userDataDiv.innerHTML = `
@@ -55,32 +65,12 @@ function fetchUserData() {
         const userDataDiv = document.getElementById("userData");
         userDataDiv.textContent = "Error fetching user data.";
     });
-
-    
-    // const userRef2 = db.collection("users").doc("NDKCPUlh03OoNxkTrI7eGG60dYP2").collection("medical_history").doc("history_17_02_2024");
-    // userRef2.get().then((doc) => {
-    //     if (doc.exists) {
-    //         // Document exists, extract data
-    //         const userData = doc.data();
-            
-    //         // Display user data on the webpage
-    //         const userDataDiv = document.getElementById("userData");
-    //         userDataDiv.innerHTML = `
-    //             <p><strong>Age:</strong> ${userData.age}</p>
-    //         `;
-    //     } else {
-    //         console.log("No such document!");
-    //         // Display message if user data not found
-    //         const userDataDiv = document.getElementById("userData");
-    //         userDataDiv.textContent = "User data not found.";
-    //     }
-    // }).catch((error) => {
-    //     console.log("Error getting document:", error);
-    //     // Display error message
-    //     const userDataDiv = document.getElementById("userData");
-    //     userDataDiv.textContent = "Error fetching user data.";
-    // });
 }
 
 // Event listener for the "Get Data" button
 document.getElementById("getDataBtn").addEventListener("click", fetchUserData);
+
+</script>
+
+</body>
+</html>

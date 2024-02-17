@@ -37,9 +37,18 @@ function uploadData() {
       mentalHealthHistory: document.getElementById("mentalHealthHistory").value,
     };
 
-    // Store form data in Firestore
+    // Get today's date
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, "0");
+    var mm = String(today.getMonth() + 1).padStart(2, "0"); // January is 0!
+    var yyyy = today.getFullYear();
+    today = yyyy + "-" + mm + "-" + dd;
+
+    // Store form data in Firestore under "users/UID/medical_history/history_date"
     db.collection("users")
       .doc(currentUID)
+      .collection("medical_history")
+      .doc(today)
       .set(formData)
       .then(function () {
         console.log("Document successfully written!");
