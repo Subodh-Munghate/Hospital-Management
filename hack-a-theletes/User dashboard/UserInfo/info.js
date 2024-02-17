@@ -22,6 +22,13 @@ function uploadData() {
   if (currentUser) {
     var currentUID = currentUser.uid;
 
+    // Get today's date
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, "0");
+    var mm = String(today.getMonth() + 1).padStart(2, "0"); // January is 0!
+    var yyyy = today.getFullYear();
+    today = yyyy + "-" + mm + "-" + dd;
+
     // Get form data
     var formData = {
       fullName: document.getElementById("fullName").value,
@@ -35,20 +42,15 @@ function uploadData() {
       exerciseRoutine: document.getElementById("exerciseRoutine").value,
       sleepPatterns: document.getElementById("sleepPatterns").value,
       mentalHealthHistory: document.getElementById("mentalHealthHistory").value,
+      date: today,
     };
 
-    // Get today's date
-    var today = new Date();
-    var dd = String(today.getDate()).padStart(2, "0");
-    var mm = String(today.getMonth() + 1).padStart(2, "0"); // January is 0!
-    var yyyy = today.getFullYear();
-    today = yyyy + "-" + mm + "-" + dd;
-
+    
     // Store form data in Firestore under "users/UID/medical_history/history_date"
     db.collection("users")
       .doc(currentUID)
       .collection("medical_history")
-      .doc(today)
+      .doc(today)    
       .set(formData)
       .then(function () {
         console.log("Document successfully written!");
