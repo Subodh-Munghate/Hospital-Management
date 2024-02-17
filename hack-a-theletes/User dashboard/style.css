@@ -22,9 +22,14 @@
 }
 
 .intro-right{
-  height: 100px;
-  width: 50px;
-  background-image: url(./logo-images/20240215_224112_0000.png);
+  display: flex;
+  align-items: center;
+  padding-left: 120px;
+}
+
+.doc-img{
+  height: 500px;
+  filter: drop-shadow(2px 2px 2px rgb(102, 17, 222));
 }
 
 #description{
@@ -199,6 +204,20 @@ section {
   height: 15vh;
 }
 
-i{
-  font-size: 1vw;
+.footer-icons{
+  width: 300px;
+  font-size: 30px;
+  display: flex;
+  justify-content: center;
+  justify-content: space-around;
+}
+
+.fa-brands{
+  color: white;
+  background-color: blue;
+}
+
+.fa-brands:hover{
+  color: blue;
+  background-color: white;
 }
