@@ -224,27 +224,67 @@ var doctors = [
     // Add more doctors as needed
 ];
 
-    // Function to display search results
-    function displaySearchResults(doctors){
-        var resultsContainer = $('#searchResults');
-        resultsContainer.empty(); // Clear previous results
+    // // Function to display search results
+    // function displaySearchResults(doctors){
+    //     var resultsContainer = $('#searchResults');
+    //     resultsContainer.empty(); // Clear previous results
         
-        if(doctors.length === 0){
-            resultsContainer.append('<p class="text-center">No doctors found for the selected criteria.</p>');
-        } else {
-            var row = $('<div class="row"></div>');
-            doctors.forEach(function(doctor){
-                var col = $('<div class="col-md-4 mb-4"></div>');
-                var card = $('<div class="card h-100"></div>');
-                var cardBody = $('<div class="card-body"></div>');
-                cardBody.append('<h5 class="card-title">' + doctor.name + '</h5>');
-                cardBody.append('<h6 class="card-subtitle mb-2 text-muted">' + doctor.specialty + '</h6>');
-                cardBody.append('<p class="card-text">' + doctor.bio + '</p>');
-                card.append(cardBody);
-                col.append(card);
-                row.append(col);
+    //     if(doctors.length === 0){
+    //         resultsContainer.append('<p class="text-center">No doctors found for the selected criteria.</p>');
+    //     } else {
+    //         var row = $('<div class="row"></div>');
+    //         doctors.forEach(function(doctor){
+    //             var col = $('<div class="col-md-4 mb-4"></div>');
+    //             var card = $('<div class="card h-100"></div>');
+    //             var cardBody = $('<div class="card-body"></div>');
+    //             cardBody.append('<h5 class="card-title">' + doctor.name + '</h5>');
+    //             cardBody.append('<h6 class="card-subtitle mb-2 text-muted">' + doctor.specialty + '</h6>');
+    //             cardBody.append('<p class="card-text">' + doctor.bio + '</p>');
+    //             card.append(cardBody);
+    //             col.append(card);
+    //             row.append(col);
+    //         });
+    //         resultsContainer.append(row);
+    //     }
+    // }
+
+    // Function to display search results
+// Function to display search results
+function displaySearchResults(doctors){
+    var resultsContainer = $('#searchResults');
+    resultsContainer.empty(); // Clear previous results
+    
+    if(doctors.length === 0){
+        resultsContainer.append('<p class="text-center">No doctors found for the selected criteria.</p>');
+    } else {
+        var row = $('<div class="row"></div>');
+        doctors.forEach(function(doctor){
+            var col = $('<div class="col-md-4 mb-4"></div>');
+            var card = $('<div class="card h-100 border border-primary"></div>'); // Add border classes for decoration
+            var cardBody = $('<div class="card-body"></div>');
+            cardBody.append('<h5 class="card-title text-primary">' + doctor.name + '</h5>'); // Add text-primary class for the card title
+            cardBody.append('<h6 class="card-subtitle mb-2 text-muted">' + doctor.specialty + '</h6>');
+            cardBody.append('<p class="card-text">' + doctor.bio + '</p>');
+
+            // Create a button
+            var button = $('<button class="btn btn-primary">Book an Appointment</button>'); // Use btn-primary class for the button
+            // Set the URL to redirect to
+            var pageURL = './Userinfo/info.html';// Assuming the page URLs follow a specific pattern
+            // Add click event listener to the button to redirect to the page
+            button.click(function() {
+                window.location.href = pageURL;
             });
-            resultsContainer.append(row);
-        }
+
+            // Append the button to the card body
+            cardBody.append(button);
+
+            card.append(cardBody);
+            col.append(card);
+            row.append(col);
+        });
+        resultsContainer.append(row);
     }
+}
+
+
 });
