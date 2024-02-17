@@ -33,44 +33,80 @@ var firebaseConfig = {
         return;
     }
 
-    // Move on with Auth
-    auth.createUserWithEmailAndPassword(email, password)
-        .then(function (credential) {
-            // Declare user variable
-            var user = auth.currentUser;
+//     // Move on with Auth
+//     auth.createUserWithEmailAndPassword(email, password)
+//         .then(function (credential) {
+//             // Declare user variable
+//             var user = auth.currentUser;
 
-            // Add this user to Firestore
-            var db = firebase.firestore();
-            var userRef = db.collection('users').doc(user.uid);
+//             // Add this user to Firestore
+//             var db = firebase.firestore();
+//             var userRef = db.collection('users').doc(user.uid);
 
-            // Create User data
-            var user_data = {
-                email: email,
-                full_name: full_name,
-                user_id: user,
-            };
+//             // Create User data
+//             var user_data = {
+//                 email: email,
+//                 full_name: full_name,
+//                 user_id: user,
+//             };
 
-            // Set data to Firestore
-            userRef.set(user_data)
-                .then(function () {
-                    // Done
-                    alert('User Created!!');
-                    window.location.href = "index.html";
-                })
-                .catch(function (error) {
-                    // Handle errors while setting data to Firestore
-                    alert("Error writing document: " + error);
-                });
-        })
-        .catch(function (error) {
-            // Firebase will use this to alert of its errors
-            var error_code = error.code;
-            var error_message = error.message;
+//             // Set data to Firestore
+//             userRef.set(user_data)
+//                 .then(function () {
+//                     // Done
+//                     alert('User Created!!');
+//                     window.location.href = "index.html";
+//                 })
+//                 .catch(function (error) {
+//                     // Handle errors while setting data to Firestore
+//                     alert("Something went wrong . Try again later ");
+//                 });
+//         })
+//         .catch(function (error) {
+//             // Firebase will use this to alert of its errors
+//             var error_code = error.code;
+//             var error_message = error.message;
 
-            alert(error_message);
-        });
-}
+//             alert(error_message);
+//         });
+// }
 
+auth.createUserWithEmailAndPassword(email, password)
+    .then(function (credential) {
+        // Declare user variable
+        var user = auth.currentUser;
+
+        // Add this user to Firestore
+        var db = firebase.firestore();
+        var userRef = db.collection('users').doc(user.uid);
+
+        // Create User data
+        var user_data = {
+            email: email,
+            full_name: full_name,
+            user_id: user.uid, // Store only the UID
+        };
+
+        // Set data to Firestore
+        userRef.set(user_data)
+            .then(function () {
+                // Done
+                alert('User Created!!');
+                window.location.href = "index.html";
+            })
+            .catch(function (error) {
+                // Handle errors while setting data to Firestore
+                alert("Something went wrong . Try again later ");
+            });
+    })
+    .catch(function (error) {
+        // Firebase will use this to alert of its errors
+        var error_code = error.code;
+        var error_message = error.message;
+
+        alert(error_message);
+    });
+  }
   
   // Set up our login function
   function login () {

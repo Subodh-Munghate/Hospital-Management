@@ -68,12 +68,14 @@
 .right-arrow{
   font-size: 5vw;
   color: #666;
-  align-self: center;
+  align-self: center; 
 }
+
 
 * {
   font-family: Open Sans;
 }
+
 
 section {
   width: 100%;
@@ -200,8 +202,7 @@ section {
 }
 
 .footer-logo{
-  height: 20vw;
-  height: 15vh;
+  height: 10vw;
 }
 
 .footer-icons{
@@ -215,9 +216,13 @@ section {
 .fa-brands{
   color: white;
   background-color: blue;
+  transition: all .2s ease-in-out;
 }
 
 .fa-brands:hover{
   color: blue;
   background-color: white;
+  transform: scale(1.3);
 }
+
+

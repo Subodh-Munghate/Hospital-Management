@@ -20,14 +20,36 @@
                     <div class="form-group">
                         <label for="specialty">Specialty:</label>
                         <select class="form-control" id="specialty" name="specialty">
+                            <option value="" selected disabled>Select Speciality</option>
                             <option value="general">General Practitioner</option>
-                            <option value="cardiology">Cardiology</option>
-                            <!-- Add more options as needed -->
+                            <option value="Pathologists">Pathologists</option>
+                            <option value="Physiatrists">Physiatrists</option>
+                            <option value="Urologists">Urologists</option>
+                            <option value="Plastic Surgeons">Plastic Surgeons</option>
+                            <option value="Dermatologists">Dermatologists</option>
+                            <option value="Gastroenterologists">Gastroenterologists</option>
+                            <option value="Hematologists">Hematologists</option>
+                            <option value="Neurologistsc">Neurologistsc</option>
+                            <option value="Gynecologists">Gynecologists</option>
+                            <option value="Obstetricians">Obstetricians</option>
+                            <option value="Oncologists">Oncologists</option>
+                            <option value="Ophthalmologists">Ophthalmologists</option>
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="location">Location:</label>
-                        <input type="text" class="form-control" id="location" name="location" placeholder="Enter location">
+                        <select name="location" class="form-control" id="location" placeholder="Enter location">
+                            <option value="" selected disabled>Select Location</option>
+                            <option value="Akola">Akola</option>
+                            <option value="Chandrapur">Chandrapur</option>
+                            <option value="Mumbai">Mumbai</option>
+                            <option value="Delhi">Delhi</option>
+                            <option value="Pune">Pune</option>
+                            <option value="Chennai">Chennai</option>
+                            <option value="Nagpur">Nagpur</option>
+                            <option value="Hyderabad">hyderabad</option>
+                        </select>
+                        <!-- <input type="text" class="form-control" id="location" name="location" placeholder="Enter location"> -->
                     </div>
                     <button type="submit" class="btn btn-primary">Search</button>
                 </form>

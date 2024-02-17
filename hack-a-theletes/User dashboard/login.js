@@ -54,7 +54,8 @@ function login () {
       var error_code = error.code
       var error_message = error.message
   
-      alert(error_message)
+      // alert(error_message)
+      alert("Invalid credentials")
     })
   }
   
